@@ -6,18 +6,18 @@ import (
 	"sync"
 	"time"
 
-	cid "github.com/ipfs/go-cid"
-	ds "github.com/ipfs/go-datastore"
-	dssync "github.com/ipfs/go-datastore/sync"
-	dshelp "github.com/ipfs/go-ipfs-ds-help"
-	u "github.com/ipfs/go-ipfs-util"
-	logging "github.com/ipfs/go-log"
-	floodsub "github.com/libp2p/go-floodsub"
-	p2phost "github.com/libp2p/go-libp2p-host"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	record "github.com/libp2p/go-libp2p-record"
-	routing "github.com/libp2p/go-libp2p-routing"
-	ropts "github.com/libp2p/go-libp2p-routing/options"
+	cid "github.com/dms3-fs/go-cid"
+	ds "github.com/dms3-fs/go-datastore"
+	dssync "github.com/dms3-fs/go-datastore/sync"
+	dshelp "github.com/dms3-fs/go-fs-ds-help"
+	u "github.com/dms3-fs/go-fs-util"
+	logging "github.com/dms3-fs/go-log"
+	floodsub "github.com/dms3-p2p/go-floodsub"
+	p2phost "github.com/dms3-p2p/go-p2p-host"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	record "github.com/dms3-p2p/go-p2p-record"
+	routing "github.com/dms3-p2p/go-p2p-routing"
+	ropts "github.com/dms3-p2p/go-p2p-routing/options"
 )
 
 var log = logging.Logger("pubsub-valuestore")
@@ -39,7 +39,7 @@ type PubsubValueStore struct {
 	Validator record.Validator
 }
 
-// NewPubsubPublisher constructs a new Publisher that publishes IPNS records through pubsub.
+// NewPubsubPublisher constructs a new Publisher that publishes DMS3NS records through pubsub.
 // The constructor interface is complicated by the need to bootstrap the pubsub topic.
 // This could be greatly simplified if the pubsub implementation handled bootstrap itself
 func NewPubsubValueStore(ctx context.Context, host p2phost.Host, cr routing.ContentRouting, ps *floodsub.PubSub, validator record.Validator) *PubsubValueStore {
@@ -54,7 +54,7 @@ func NewPubsubValueStore(ctx context.Context, host p2phost.Host, cr routing.Cont
 	}
 }
 
-// Publish publishes an IPNS record through pubsub with default TTL
+// Publish publishes an DMS3NS record through pubsub with default TTL
 func (p *PubsubValueStore) PutValue(ctx context.Context, key string, value []byte, opts ...ropts.Option) error {
 	p.mx.Lock()
 	_, bootstraped := p.subs[key]

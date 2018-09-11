@@ -6,13 +6,13 @@ import (
 	"testing"
 	"time"
 
-	floodsub "github.com/libp2p/go-floodsub"
-	bhost "github.com/libp2p/go-libp2p-blankhost"
-	p2phost "github.com/libp2p/go-libp2p-host"
-	record "github.com/libp2p/go-libp2p-record"
-	routing "github.com/libp2p/go-libp2p-routing"
-	rhelper "github.com/libp2p/go-libp2p-routing-helpers"
-	swarmt "github.com/libp2p/go-libp2p-swarm/testing"
+	floodsub "github.com/dms3-p2p/go-floodsub"
+	bhost "github.com/dms3-p2p/go-p2p-blankhost"
+	p2phost "github.com/dms3-p2p/go-p2p-host"
+	record "github.com/dms3-p2p/go-p2p-record"
+	routing "github.com/dms3-p2p/go-p2p-routing"
+	rhelper "github.com/dms3-p2p/go-p2p-routing-helpers"
+	swarmt "github.com/dms3-p2p/go-p2p-swarm/testing"
 )
 
 func newNetHost(ctx context.Context, t *testing.T) p2phost.Host {
